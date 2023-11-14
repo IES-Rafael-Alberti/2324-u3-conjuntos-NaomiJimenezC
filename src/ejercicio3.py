@@ -11,27 +11,39 @@ Escriba la función conjunto_potencia(s) que reciba como parámetro un conjunto 
 [set(), set([6]), set([1]), set([4]), set([6, 1]), set([6, 4]), set([1, 4]), set([6, 1, 4])]
 
 """
-#Entrada
 #Procesado
-def conjunto_potencia(s):
-    # Inicializa la lista potencia con el conjunto vacío
-    potencia = [set()]
 
-    # Itera sobre cada elemento en el conjunto original
-    for elemento in s:
-        # Itera sobre los conjuntos existentes en la lista potencia
+def conjunto_potencia(conjunto_introducido:set)->list:
+    """Calcula el conjunto potencia de un set introducido
+    Parameters
+    ----------
+    conjunto_introducido : set
+        Es el conjunto del que queremos obtener su conjunto introducido
+
+    Returns
+    -------
+    list
+        Devuelve una lista con el conjunto potencia calculado
+    """
+    lista_de_potencias = [set()]
+    
+    for elemento in conjunto_introducido:
         nuevos_subconjuntos = []
-        for subset in potencia:
-            # Combina el elemento actual con cada conjunto existente y agrega el nuevo conjunto
+        for subset in lista_de_potencias:
             nuevos_subconjuntos.append(subset | {elemento})
-        # Agrega los nuevos conjuntos a la lista potencia
-        potencia += nuevos_subconjuntos
+        lista_de_potencias += nuevos_subconjuntos
 
-    return potencia
+    return lista_de_potencias
 #Salida
 
-#TODO miralo mañana en clase
+def mostrar_conjunto_potencia(conjunto_potencia_calculado:list)->str:
+    return f"El conjunto potencia calculado es: {conjunto_potencia_calculado}"
 
 if __name__ == "__main__":
-prueba = conjunto_potencia({1,2,3})
-print(prueba)
+    #Entrada
+    conjunto_numerico = {6, 1, 4}
+    #Procesado
+    conjunto_potencia = conjunto_potencia(conjunto_numerico)
+    #Salida
+    mensaje_conjunto_potencia = mostrar_conjunto_potencia(conjunto_potencia)
+    print(mensaje_conjunto_potencia)
